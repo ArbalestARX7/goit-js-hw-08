@@ -4,6 +4,7 @@ const form = document.querySelector('.feedback-form');
 
 form.addEventListener('submit', onFormSubmit);
 form.addEventListener('input', throttle(onFormInput, 500));
+const data = JSON.parse(localStorage.getItem('feedback-form-state')) || {};
 
 formFiller();
 
@@ -12,8 +13,6 @@ function onFormSubmit(evt) {
   console.log(data);
   evt.currentTarget.reset();
 }
-
-const data = JSON.parse(localStorage.getItem('feedback-form-state')) || {};
 
 function onFormInput(evt) {
   data[evt.target.name] = evt.target.value;
